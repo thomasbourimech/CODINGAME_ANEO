@@ -30,7 +30,7 @@ def compute_state_at_time(t_target, light_duration, state):
     return state
 
 
-def compute_light_state(light_duration, speed, light_distance):
+def get_state_at_car_arrival(light_duration, speed, light_distance):
 
     speed_ms = speed * 1000 / 3600
     time_to_light_no_optim = compute_seconds_to_light(speed_ms, light_distance)
@@ -63,7 +63,7 @@ for i in range(light_count):
 for speed in reversed(range(1, speed + 1)):
     if "R" in tab_state_at_crossing.values():
         for i in range(light_count):
-            state = compute_light_state(tab_lights[i]["light_duration"], speed, tab_lights[i]["light_distance"])
+            state = get_state_at_car_arrival(tab_lights[i]["light_duration"], speed, tab_lights[i]["light_distance"])
             if state == "R":
                 break
             tab_state_at_crossing[i] = state
